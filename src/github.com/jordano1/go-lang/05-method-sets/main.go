@@ -26,4 +26,5 @@ func main() {
 	}
 	saySomething(&p1)
 	p1.speak()
+	fmt.Printf("%T", &p1)
 }
