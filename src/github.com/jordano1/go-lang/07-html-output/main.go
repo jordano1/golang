@@ -1,7 +1,9 @@
 package main
 
 import (
-	"fmt"
+	"io"
+	"log"
+	"os"
 	"strings"
 )
 
@@ -10,7 +12,6 @@ func main() {
 	d := []string{name}
 	title := append(d, "'s site")
 	s := strings.Join(title, "")
-	fmt.Println("Title:", title)
 	html := `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +24,11 @@ func main() {
     <p>` + name + `</p>
 </body>
 </html>`
+	nf, err := os.Create("index.html")
+	if err != nil {
+		log.Fatal("error", err)
+	}
+	defer nf.Close()
+	io.Copy(nf, strings.NewReader(html))
 
-	fmt.Println(html)
 }
