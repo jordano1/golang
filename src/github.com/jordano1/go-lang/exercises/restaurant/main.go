@@ -1,25 +1,17 @@
 package main
 
 import (
-	"html/template"
 	"log"
 	"os"
+	"text/template"
 )
 
-//contains information about restaurant's menu including Breakfast, Lunch, and Dinner items
-
-type time struct {
-	Breakfast, Lunch, Dinner string
-}
-
 type menu struct {
-	Time []time
+	Name, Desc, Meal string
+	Price            float64
 }
 
-type restaurant struct {
-	Name string
-	Menu []menu
-}
+type menus []menu
 
 var tpl *template.Template
 
@@ -28,17 +20,27 @@ func init() {
 }
 
 func main() {
-	r := restaurant{
-		Name: "Joes",
-		Menu: []menu{
-			menu{
-				Time:time{
-					time{}
-				},
-			},
+	m := menus{
+		menu{
+			Name:  "Oatmeal",
+			Desc:  "yum yum",
+			Meal:  "Breakfast",
+			Price: 4.95,
+		},
+		menu{
+			Name:  "Hamburger",
+			Desc:  "Delicous good eating for you",
+			Meal:  "Lunch",
+			Price: 6.95,
+		},
+		menu{
+			Name:  "Pasta Bolognese",
+			Desc:  "From Italy delicious eating",
+			Meal:  "Dinner",
+			Price: 7.95,
 		},
 	}
-	err := tpl.ExecuteTemplate(os.Stdout, "tpl.gohtml", r)
+	err := tpl.Execute(os.Stdout, m)
 	if err != nil {
 		log.Fatalln(err)
 	}
