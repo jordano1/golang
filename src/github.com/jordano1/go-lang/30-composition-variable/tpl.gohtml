@@ -6,7 +6,20 @@
 </head>
 <body>
 
-<h1>{{.Name}}</h1>
-<h2>{{.Age}}</h2>
+    <h2>{{.Fall.Term}}</h1>
+    {{range .Fall.Courses}}
+    <h2>Course Number: {{.Number}}, Course Name: {{.Name}}, Credits: {{.Credits}}</h2>    
+    {{end}}
+
+    <h2>{{.Spring.Term}}</h1>
+    {{range .Spring.Courses}}
+    <h2>Course Number: {{.Number}}, Course Name: {{.Name}}, Credits: {{.Credits}}</h2> 
+    {{end}}
+
+    <h2>{{.Summer.Term}}</h1>
+    {{range .Summer.Courses}}
+    <h2>Course Number: {{.Number}}, Course Name: {{.Name}}, Credits: {{.Credits}}</h2>
+    {{end}}
+
 </body>
 </html>

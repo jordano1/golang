@@ -9,11 +9,11 @@ import (
 var tpl *template.Template
 
 func init() {
-	tpl = template.Must(template.ParseGlob("templates/*.gohtml"))
+	tpl = template.Must(template.ParseGlob("*.gohtml"))
 }
 
 type course struct {
-	Number, Name, Units string
+	Number, Name, Credits string
 }
 type semester struct {
 	Term    string
@@ -24,22 +24,35 @@ type year struct {
 }
 
 func main() {
+
 	y := year{
 		Fall: semester{
-			Term: "fall",
+			Term: "Fall",
 			Courses: []course{
-				course{"school is for fools", "school is for fools", "school is for fools"},
+				course{"1", "Dumputer Dcience", "3"},
+				course{"2", "Bromputer Brience", "3"},
+				course{"3", "Computer Science", "3"},
 			},
 		},
 		Spring: semester{
 			Term: "Spring",
 			Courses: []course{
-				course{"school is for fools", "school is for fools", "school is for fools"},
+				course{"3", "Computer Science", "3"},
+				course{"2", "Bromputer Brience", "3"},
+				course{"1", "Dumputer Dcience", "3"},
+			},
+		},
+		Summer: semester{
+			Term: "Summer",
+			Courses: []course{
+				course{"3", "Computer Science", "3"},
+				course{"1", "Dumputer Dcience", "3"},
+				course{"2", "Bromputer Brience", "3"},
 			},
 		},
 	}
 
-	err := tpl.ExecuteTemplate(os.Stdout, "index.gohtml", y)
+	err := tpl.ExecuteTemplate(os.Stdout, "tpl.gohtml", y)
 	if err != nil {
 		log.Fatalln(err)
 	}
