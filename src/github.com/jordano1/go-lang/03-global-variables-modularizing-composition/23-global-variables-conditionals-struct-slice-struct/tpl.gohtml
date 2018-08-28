@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    #example 1 
+    {{range .}}
+    <p>{{.}}</p>
+    {{end}}
+
+    #ex2
+    {{if .}}
+    <p>example #2 - {{.}}</p>
+    {{end}}
+
+    #ex 3
+    {{range .}}
+        {{if .Name == "brosef"}}
+            <p>example #3 - {{.Name}}</p>
+        {{end}}
+    {{end}}
+    #ex 4
+    {{range .}}
+        {{if and .Name .Admin}}
+            <p>example #4 - name: {{.Name}}</p>
+            <p>example #4 - motto: {{.Motto}}</p>
+            <p>example #4 - admin:  {{.Admin}}</p>
+        {{end}}
+    {{end}}
+
+</body>
+</html>

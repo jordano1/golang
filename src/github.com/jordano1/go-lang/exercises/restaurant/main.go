@@ -6,12 +6,16 @@ import (
 	"text/template"
 )
 
-type menu struct {
-	Name, Desc, Meal string
-	Price            float64
+type item struct {
+	Name, Desc string
+	Price      float64
+}
+type food struct {
+	Hour string
+	Item []item
 }
 
-type menus []menu
+type menu []food
 
 var tpl *template.Template
 
@@ -20,26 +24,60 @@ func init() {
 }
 
 func main() {
-	m := menus{
-		menu{
-			Name:  "Oatmeal",
-			Desc:  "yum yum",
-			Meal:  "Breakfast",
-			Price: 4.95,
+
+	m := menu{
+		food{
+			Hour: "Breakfast",
+			Item: []item{
+				item{
+					Name:  "Eggs n bacon",
+					Desc:  "Has Eggs and bacon",
+					Price: 10.99,
+				},
+				item{
+					Name:  "Bacon Coffee",
+					Desc:  "Has Coffee and some strips of bacon cuz you're a weird hipster on a weird hipster diet",
+					Price: 20.99,
+				},
+				item{
+					Name:  "Meat Mountain",
+					Desc:  "You ordered all our meat!",
+					Price: 45.99,
+				},
+			},
 		},
-		menu{
-			Name:  "Hamburger",
-			Desc:  "Delicous good eating for you",
-			Meal:  "Lunch",
-			Price: 6.95,
+		food{
+			Hour: "Lunch",
+			Item: []item{
+				item{
+					Name:  "Grilled cheese",
+					Desc:  "self explanatory",
+					Price: 45.99,
+				},
+			},
 		},
-		menu{
-			Name:  "Pasta Bolognese",
-			Desc:  "From Italy delicious eating",
-			Meal:  "Dinner",
-			Price: 7.95,
+		food{
+			Hour: "Dinner",
+			Item: []item{
+				item{
+					Name:  "Spaghetti",
+					Desc:  "everyone's second favorite",
+					Price: 25.99,
+				},
+				item{
+					Name:  "Pizza",
+					Desc:  "everyone's favorite",
+					Price: 15.99,
+				},
+				item{
+					Name:  "Fetuccini",
+					Desc:  "sassy sauce, sexy noodles",
+					Price: 12.99,
+				},
+			},
 		},
 	}
+
 	err := tpl.Execute(os.Stdout, m)
 	if err != nil {
 		log.Fatalln(err)

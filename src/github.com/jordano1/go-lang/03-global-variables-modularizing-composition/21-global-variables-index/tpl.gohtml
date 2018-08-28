@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Maps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <p>slice: {{.}}</p>
+
+    <p>can also access by using index:</p>
+    <ul>
+        <li>{{index . 0}}</li>
+        <li>{{index . 1}}</li>
+        <li>{{index . 2}}</li>
+        <li>{{index . 3}}</li>
+    </ul>
+    <p>or using range:</p>
+    <ul>
+        {{range .}}
+        <li>{{.}}</li>
+        {{end}}
+    </ul>
+    <p>or using range with a key and value pair:</p>
+    <ul>
+    {{range $index, $val := .}}
+        <li>index: {{$index}}, Val: {{$val}}</li>
+    {{end}}
+    </ul>
+    <p><em>note, you can comment out inside of go brackets. {{/*.*/}}</em></p>
+</body>
+
+</html>

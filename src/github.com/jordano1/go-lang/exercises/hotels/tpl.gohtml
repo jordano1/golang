@@ -5,36 +5,14 @@
     <title>Document</title>
 </head>
 <body>
-
-
 <!-- PUT YOUR CODE HERE TO SHOW THE DATA-->
-{{range .}}
-    {{.AcaYear}}
-    {{.Fall.Term}}
-    {{range .Fall.Courses}}
-        Name: {{.Name}}
-        Number: {{.Number}}
-        Units: {{.Units}}
-    {{end}}
-    {{range .Spring.Courses}}
-        Name: {{.Name}}
-        Number: {{.Number}}
-        Units: {{.Units}}
-    {{end}}
-{{end}}
 
-{{range .}}
-    {{range .Fall.Courses}}
-        Name: {{.Name}}
-        Number: {{.Number}}
-        Units: {{.Units}}
+    {{range .}}
+        {{.Name}}
+        {{.Region}}
+        {{.City}}
+        {{.Zip}}
     {{end}}
-    {{range .Spring.Courses}}
-        Name: {{.Name}}
-        Number: {{.Number}}
-        Units: {{.Units}}
-    {{end}}
-{{end}}
 
 </body>
 </html>
