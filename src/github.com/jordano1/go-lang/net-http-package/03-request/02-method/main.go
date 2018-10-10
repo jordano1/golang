@@ -14,15 +14,13 @@ func (m hotdog) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		log.Fatalln(err)
 	}
-
 	data := struct {
-		Method       string
-		Sumbmissions url.Values
+		Method      string
+		Submissions url.Values
 	}{
 		req.Method,
 		req.Form,
 	}
-
 	tpl.ExecuteTemplate(w, "index.gohtml", data)
 }
 

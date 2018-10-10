@@ -9,21 +9,27 @@ import (
 
 type hotdog int
 
-func (m hotdog) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+func (m hotdog) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 	err := req.ParseForm()
 	if err != nil {
 		log.Fatalln(err)
 	}
-
 	data := struct {
-		Method       string
-		Sumbmissions url.Values
+		Method        string
+		URL           *url.URL
+		Submissions   map[string][]string
+		Header        http.Header
+		Host          string
+		ContentLength int64
 	}{
 		req.Method,
+		req.URL,
 		req.Form,
+		req.Header,
+		req.Host,
+		req.ContentLength,
 	}
-
-	tpl.ExecuteTemplate(w, "index.gohtml", data)
+	tpl.ExecuteTemplate(res, "index.gohtml", data)
 }
 
 var tpl *template.Template
